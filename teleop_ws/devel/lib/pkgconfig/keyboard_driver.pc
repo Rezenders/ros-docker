@@ -1,0 +1,8 @@
+prefix=/home/gus/Documents/teleop_ws/devel
+
+Name: keyboard_driver
+Description: Description of keyboard_driver
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/gus/Documents/teleop_ws/devel/lib 
+Requires: 

@@ -1,0 +1,25 @@
+FROM ros:melodic
+
+RUN apt-get update && apt-get install -y \
+    vim \
+    && rm -rf /var/lib/apt/lists/
+
+RUN ["/bin/bash", "-c", "echo 'source /opt/ros/melodic/setup.bash' >> ~/.bashrc"]
+
+# Setup catkin workspace
+RUN ["/bin/bash","-c", "source /opt/ros/melodic/setup.bash && \
+                  mkdir -p /catkin_ws/src && \
+                  cd /catkin_ws/src && \
+                  catkin_init_workspace && \
+                  cd /catkin_ws/ && \
+                  catkin_make && \
+                  echo 'source /catkin_ws/devel/setup.bash' >> ~/.bashrc"]
+
+WORKDIR /catkin_ws/src/
+RUN catkin_create_pkg keyboard_driver
+COPY teleop_ws/src/keyboard_driver /catkin_ws/src/keyboard_driver
+RUN ["/bin/bash","-c", "source ~/.bashrc"]
+
+COPY entrypoint.sh /
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["bash"]
