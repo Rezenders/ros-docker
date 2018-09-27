@@ -32,3 +32,5 @@ COPY PACKAGE_LOCATION_ON_YOUR_COMPUTER /catkin_ws/src/YOUR_PACKAGE_NAME
 ```
 docker run -it ros-docker rosrun YOUR_PACKAGE_NAME EXECUTABLE
 ```
+
+More information about running: https://hub.docker.com/r/library/ros/
