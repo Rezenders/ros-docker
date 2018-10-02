@@ -11,11 +11,15 @@ Integrating ROS with docker
 
 #### Build docker image:
 
-```$ docker build --tag ros-docker . ```
+```bash
+$ docker build --tag ros-docker . 
+```
 
 #### Run image:
 
-```$ docker run -it ros-docker```
+```bash
+$ docker run -it ros-docker
+```
 
 # Run Demo Application
 
@@ -23,25 +27,35 @@ The demo application consist in an executable that publishes keys strokes presse
 
 First a docker network must be created, run:
 
-```$ docker network create ros_net```
+```bash
+$ docker network create ros_net
+```
 
 Next, roscore must be initialized, run:
 
-```$ docker run -it --rm --net ros_net  --name master --env ROS_HOSTNAME=master ros:melodic roscore ```
+```bash
+$ docker run -it --rm --net ros_net  --name master --env ROS_HOSTNAME=master ros:melodic roscore 
+```
 
 Now, the desired applications can be run as following:
 
 Key publisher:
 
-```$ docker run -it --rm  --net ros_net  --name key_publisher --env ROS_HOSTNAME=key_publisher --env ROS_MASTER_URI=http://master:11311 ros-docker  rosrun keyboard_driver key_publisher.py ```
+```bash
+$ docker run -it --rm  --net ros_net  --name key_publisher --env ROS_HOSTNAME=key_publisher --env ROS_MASTER_URI=http://master:11311 ros-docker  rosrun keyboard_driver key_publisher.py 
+```
 
 Key to twist:
 
-```$ docker run -it --rm --net ros_net --name keys_to_twist --env ROS_HOSTNAME=keys_to_twist --env ROS_MASTER_URI=http://master:11311 ros-docker  rosrun keyboard_driver keys_to_twist.py ```
+```bash
+$ docker run -it --rm --net ros_net --name keys_to_twist --env ROS_HOSTNAME=keys_to_twist --env ROS_MASTER_URI=http://master:11311 ros-docker  rosrun keyboard_driver keys_to_twist.py 
+```
 
 If you want to inspect the data being exchange by ros you can run another container without running any commands, as follows:
 
-```$ docker run -it --rm --net ros_net  --name echo --env ROS_HOSTNAME=echo --env ROS_MASTER_URI=http://master:11311 ros:melodic```
+```bash
+$ docker run -it --rm --net ros_net  --name echo --env ROS_HOSTNAME=echo --env ROS_MASTER_URI=http://master:11311 ros:melodic
+```
 
 Then run rostopic, rosmsg etc.
 
@@ -62,5 +76,7 @@ COPY PACKAGE_LOCATION_ON_YOUR_COMPUTER /catkin_ws/src/YOUR_PACKAGE_NAME
 ```
 $ docker run -it ros-docker rosrun YOUR_PACKAGE_NAME EXECUTABLE
 ```
+Check the Run Demo Application section for an example on how to run a full application.
+
 
 More information about running: https://hub.docker.com/r/library/ros/
