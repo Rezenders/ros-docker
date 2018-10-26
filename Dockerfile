@@ -15,8 +15,8 @@ RUN ["/bin/bash","-c", "source /opt/ros/melodic/setup.bash && \
 WORKDIR /catkin_ws/src/
 
 #Copy package files to catkin workspace
-#RUN catkin_create_pkg keyboard_driver
-#COPY teleop_ws/src/keyboard_driver /catkin_ws/src/keyboard_driver
+RUN catkin_create_pkg keyboard_driver
+COPY teleop_ws/src/keyboard_driver /catkin_ws/src/keyboard_driver
 
 COPY entrypoint.sh /
 ENTRYPOINT ["/entrypoint.sh"]

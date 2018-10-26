@@ -20,6 +20,7 @@ def keys_cb(msg, twist_pub):
     t = Twist()
     t.angular.z = vels[0]
     t.linear.x = vels[1]
+    print(g_last_twist)
     twist_pub.publish(g_last_twist)
 
 if __name__ == '__main__':
