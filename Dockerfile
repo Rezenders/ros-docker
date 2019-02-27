@@ -1,4 +1,4 @@
-FROM rezenders/beaglebone-black-ubuntu-openjdk-ros
+FROM FROM rezenders/armv7hf-ubuntu-openjdk-ros:8-jdk-bionic 
 
 RUN apt-get update && apt-get install -y \
     vim \
